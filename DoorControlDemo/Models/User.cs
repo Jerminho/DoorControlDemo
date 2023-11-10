@@ -16,8 +16,9 @@ namespace DoorControlDemo.Models
         [Required(ErrorMessage = "Name is required. Provide a name to this user.")]
         public string Name { get; set; }
 
+        // Collection of badges for the user
         [Required(ErrorMessage = "Badge is required. Assign a badge to this user.")]
-        Badge Badge { get; set; }
+        public List<Badge> AssignedBadges { get; set; } = new List<Badge>();
 
         public string? Mail { get; set; }
 
