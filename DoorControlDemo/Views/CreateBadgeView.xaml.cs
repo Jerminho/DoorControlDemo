@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DoorControlDemo.Data;
+using DoorControlDemo.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,30 +14,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DoorControlDemo.Data;
-using DoorControlDemo.ViewModels;
-using Microsoft.EntityFrameworkCore;
 
 namespace DoorControlDemo.Views
 {
     /// <summary>
-    /// Interaction logic for CreateUserView.xaml
+    /// Interaction logic for CreateBadgeView.xaml
     /// </summary>
-    public partial class CreateUserView : Window
+    public partial class CreateBadgeView : Window
     {
-        // Create an instance of your view model and set it as the data context
-        public CreateUserView()
+        public CreateBadgeView()
         {
             InitializeComponent();
             // Configure the DbContextOptions. This can be an in-memory database or another provider.
             var options = new DbContextOptionsBuilder<DoorControlDbContext>()
-                .UseInMemoryDatabase("usersDb") // Suitable name for the Db
+                .UseInMemoryDatabase("BadgesDb") // Suitable name for the Db
                 .Options;
 
             // Create the DbContext with the configured options
             var dbContext = new DoorControlDbContext(options);
             // Set the data context
-            DataContext = new CreateUserViewModel(dbContext);
+            DataContext = new CreateBadgeViewModel(dbContext);
         }
     }
 }

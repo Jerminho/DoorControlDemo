@@ -28,7 +28,7 @@ namespace DoorControlDemo.ViewModels
         // Declare the Create User Command
         public ICommand CreateDeviceCommand { get; }
 
-        // Declare a private field
+        // Declare a private field for the new value
         string _deviceName;
 
         // Set its new value
@@ -105,7 +105,7 @@ namespace DoorControlDemo.ViewModels
             };
 
 
-            // Add the user to the context
+            // Add the device to the context
             dbContext.Devices.Add(newDevice);
 
             // Save changes to the database
@@ -124,6 +124,7 @@ namespace DoorControlDemo.ViewModels
             MessageBox.Show($"Device {newDevice.Name} created successfully!\n\n{devicesInfo.ToString()}");
         }
 
+        // PropertyChanged implementation
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

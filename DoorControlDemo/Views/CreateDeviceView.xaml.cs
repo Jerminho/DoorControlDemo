@@ -27,7 +27,7 @@ namespace DoorControlDemo.Views
             InitializeComponent();
             // Configure the DbContextOptions. This can be an in-memory database or another provider.
             var options = new DbContextOptionsBuilder<DoorControlDbContext>()
-                .UseInMemoryDatabase("DevicesDb") // Replace with a meaningful name
+                .UseInMemoryDatabase("DevicesDb") // Suitable name for the Db
                 .Options;
 
             // Create the DbContext with the configured options

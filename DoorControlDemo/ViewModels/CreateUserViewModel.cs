@@ -31,8 +31,8 @@ namespace DoorControlDemo.ViewModels
         // Declare the Create User Command
         public ICommand CreateUserCommand { get; }
 
-        // Declare a private field
-         string _userName;
+        // Declare a private field for the new value
+        string _userName;
 
         // Set its new value
         public string UserName
@@ -83,9 +83,10 @@ namespace DoorControlDemo.ViewModels
             if (dbContext.Users.Any(u => u.Name == UserName && u.Mail == UserMail && u.PhoneNumber == UserPhoneNumber))
             {
                 MessageBox.Show($"User with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
-                // Implement logic to create a user, perhaps by calling a method in your model
-                User newUser = new User
+            // Implement logic to create a user, perhaps by calling a method in your model
+            User newUser = new User
             {
                 Name = UserName,
                 Mail = UserMail,
@@ -103,6 +104,8 @@ namespace DoorControlDemo.ViewModels
             MessageBox.Show($"User {newUser.Name} created successfully!"); // Display a message or handle success
         }
 
+
+        // PropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

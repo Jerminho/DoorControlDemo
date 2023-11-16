@@ -29,9 +29,16 @@ namespace DoorControlDemo
 
             //Test the CreateDeviceView
 
-            var app = new App();
+            /*var app = new App();
             var createDeviceView = new CreateDeviceView(); // Replace with the actual main window of your application
-            app.Run(createDeviceView);
+            app.Run(createDeviceView);*/
+
+
+
+            // Test the CreateBadgeView
+            var app = new App();
+            var createBadgeView = new CreateBadgeView(); // Replace with the actual main window of your application
+            app.Run(createBadgeView);
         }
     }
 }
