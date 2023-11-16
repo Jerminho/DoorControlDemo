@@ -4,17 +4,23 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DoorControlDemo.Data
 {
-    internal class DoorControlDbContext : DbContext
+    public class DoorControlDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Badge> Badges { get; set; }
         public DbSet<Device> Devices { get; set; }
+
+        // Constructor with DbContextOptions parameter
+        public DoorControlDbContext(DbContextOptions<DoorControlDbContext> options) : base(options)
+        {
+        }
 
         // Configure the relationships using Fluent API
         protected override void OnModelCreating(ModelBuilder modelbuilder)
@@ -41,6 +47,10 @@ namespace DoorControlDemo.Data
                 // The foreign key for this relationship is defined
                 // in the 'User' class as 'DeviceId'
                 .HasForeignKey(u => u.DeviceId);
+
+            // Configure Device entity with a primary key
+            modelbuilder.Entity<Device>()
+                .HasKey(d => d.DeviceId);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace DoorControlDemo.Models
 {
-    internal class Device
+    public class Device
     {
         // Constructor
         public Device()
@@ -23,6 +23,9 @@ namespace DoorControlDemo.Models
 
 
         //Properties
+
+        [Key]
+        public int DeviceId { get; set; }
 
         [Required(ErrorMessage = "IP Address is required")]
         public string Ip { get; set; }

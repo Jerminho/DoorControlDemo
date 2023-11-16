@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DoorControlDemo.Models
 {
-    internal class Badge
+    public class Badge
     {
         [Key]
         [Required(ErrorMessage = "BadgeId is required.")]

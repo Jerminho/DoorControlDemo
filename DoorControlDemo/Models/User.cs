@@ -10,10 +10,13 @@ using System.Windows;
 
 namespace DoorControlDemo.Models
 {
-    internal class User
+    public class User
     {
+        // Set the primary key
         [Key]
-        [Required(ErrorMessage = "Id is required")]
+        //the database should automatically generate a unique value
+        //for that property when a new record is inserted
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Name is required. Provide a name to this user.")]
