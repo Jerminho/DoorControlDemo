@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,8 +79,13 @@ namespace DoorControlDemo.ViewModels
                 return; // Stop the user creation process
             }
 
-            // Implement logic to create a user, perhaps by calling a method in your model
-            User newUser = new User
+            // Check if a device with the same properties already exists in the database
+            if (dbContext.Users.Any(u => u.Name == UserName && u.Mail == UserMail && u.PhoneNumber == UserPhoneNumber))
+            {
+                MessageBox.Show($"User with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Implement logic to create a user, perhaps by calling a method in your model
+                User newUser = new User
             {
                 Name = UserName,
                 Mail = UserMail,

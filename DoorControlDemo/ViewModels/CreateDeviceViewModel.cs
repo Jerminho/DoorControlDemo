@@ -89,6 +89,13 @@ namespace DoorControlDemo.ViewModels
                 return; // Validation failed
             }
 
+            // Check if a device with the same properties already exists in the database
+            if (dbContext.Devices.Any(d => d.Name == DeviceName && d.Ip == IpAddress && d.PortNumber == Port))
+            {
+                MessageBox.Show($"Device with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; // Stop the user creation process
+            }
+
             // Implement logic to create a device, perhaps by calling a method in your model
             Device newDevice = new Device
             {
