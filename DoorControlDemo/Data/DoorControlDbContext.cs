@@ -18,7 +18,8 @@ namespace DoorControlDemo.Data
         public DbSet<Device> Devices { get; set; }
 
         // Constructor with DbContextOptions parameter
-        public DoorControlDbContext(DbContextOptions<DoorControlDbContext> options) : base(options)
+        public DoorControlDbContext(DbContextOptions<DoorControlDbContext> options) 
+            : base(options)
         {
         }
 

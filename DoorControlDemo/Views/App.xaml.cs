@@ -19,9 +19,19 @@ namespace DoorControlDemo
         [STAThread]
         public static void Main()
         {
-            var app = new App();
+            // Test the CreateUserView
+
+            /*var app = new App();
             var createUserView = new CreateUserView(); // Replace with the actual main window of your application
-            app.Run(createUserView);
+            app.Run(createUserView);*/
+
+
+
+            //Test the CreateDeviceView
+
+            var app = new App();
+            var createDeviceView = new CreateDeviceView(); // Replace with the actual main window of your application
+            app.Run(createDeviceView);
         }
     }
 }

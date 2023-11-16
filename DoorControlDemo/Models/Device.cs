@@ -14,10 +14,10 @@ namespace DoorControlDemo.Models
         // Constructor
         public Device()
         {
-            // Set a default name if not provided
+            // Set default values if not provided
             Name = "Default Access Device";
-
-            // Set a default type if not provided
+            Ip = "192.168.1.1";
+            PortNumber = 8008;
             Type = "Access Controller";
         }
 
@@ -32,6 +32,9 @@ namespace DoorControlDemo.Models
 
         [Required(ErrorMessage = "Device name is required.")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Device port is required.")]
+        public int PortNumber { get; set; }
 
         [Required(ErrorMessage = "Device type is required.")]
         public string Type { get; set; }

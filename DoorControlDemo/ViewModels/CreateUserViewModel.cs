@@ -20,6 +20,7 @@ namespace DoorControlDemo.ViewModels
         // Declare the database
         public readonly DoorControlDbContext dbContext;
 
+        // Set the constructor
         public CreateUserViewModel(DoorControlDbContext dbContext)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -66,6 +67,7 @@ namespace DoorControlDemo.ViewModels
             }
         }
 
+        // Create the method to be used as command
         // Use the data context to add the new user to the database
         public void CreateUser()
         {
