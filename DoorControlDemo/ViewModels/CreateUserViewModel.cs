@@ -16,7 +16,7 @@ using System.Windows.Input;
 namespace DoorControlDemo.ViewModels
 {   
 
-    public class CreateUserViewModel : INotifyPropertyChanged
+    public class CreateUserViewModel : ViewModelBase, INotifyPropertyChanged
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
@@ -99,10 +99,23 @@ namespace DoorControlDemo.ViewModels
             // Save changes to the database
             dbContext.SaveChanges();
 
-            // Add additional logic as needed, e.g., validation, interaction with your data context
+            /*// Add additional logic as needed, e.g., validation, interaction with your data context
 
-            MessageBox.Show($"User {newUser.Name} created successfully!"); // Display a message or handle success
+            MessageBox.Show($"User {newUser.Name} created successfully!"); // Display a message or handle success*/
+
+            // Add additional logic as needed, e.g., validation, interaction with your data context
+            // Construct a message string with information about all Users
+            StringBuilder usersInfo = new StringBuilder("Users in the database:\n");
+
+            foreach (var badge in dbContext.Users)
+            {
+                usersInfo.AppendLine($" User: {badge.Name}");
+            }
+
+            // Display the message with badge information
+            MessageBox.Show($"User {newUser.Name} created successfully!\n\n{usersInfo.ToString()}");
         }
+
 
 
         // PropertyChanged implementation

@@ -1,5 +1,6 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.Models;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Input;
 
 namespace DoorControlDemo.ViewModels
 {
-    public class CreateDeviceViewModel : INotifyPropertyChanged
+    public class CreateDeviceViewModel : ViewModelBase, INotifyPropertyChanged
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;

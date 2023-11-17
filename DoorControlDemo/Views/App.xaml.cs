@@ -1,4 +1,5 @@
-﻿using DoorControlDemo.Views;
+﻿using DoorControlDemo.ViewModels;
+using DoorControlDemo.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,11 +20,17 @@ namespace DoorControlDemo
         [STAThread]
         public static void Main()
         {
+
+            // Test the mainWindow
+            /*var app = new App();
+            var mainWindow = new MainWindow(); // Replace with the actual main window of your application
+            app.Run(mainWindow);*/
+
             // Test the CreateUserView
 
-            /*var app = new App();
+            var app = new App();
             var createUserView = new CreateUserView(); // Replace with the actual main window of your application
-            app.Run(createUserView);*/
+            app.Run(createUserView);
 
 
 
@@ -34,11 +41,11 @@ namespace DoorControlDemo
             app.Run(createDeviceView);*/
 
 
-
-            // Test the CreateBadgeView
-            var app = new App();
-            var createBadgeView = new CreateBadgeView(); // Replace with the actual main window of your application
-            app.Run(createBadgeView);
+            /*
+                        // Test the CreateBadgeView
+                        var app = new App();
+                        var createBadgeView = new CreateBadgeView(); // Replace with the actual main window of your application
+                        app.Run(createBadgeView);*/
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.Models;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Windows.Input;
 
 namespace DoorControlDemo.ViewModels
 {
-    public class CreateBadgeViewModel : INotifyPropertyChanged
+    public class CreateBadgeViewModel : ViewModelBase, INotifyPropertyChanged
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
@@ -93,5 +94,6 @@ namespace DoorControlDemo.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }
