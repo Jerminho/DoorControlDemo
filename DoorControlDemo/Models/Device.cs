@@ -19,6 +19,7 @@ namespace DoorControlDemo.Models
 
 
         //Properties
+        //Required is not needed here since the properties are nullable...
 
         [Key]
         public int DeviceId { get; set; }
