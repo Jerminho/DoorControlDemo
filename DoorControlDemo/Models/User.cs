@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.IO.Packaging;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -19,18 +20,22 @@ namespace DoorControlDemo.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
-        [Required(ErrorMessage = "Name is required. Provide a name to this user.")]
-        public string Name { get; set; }
+/*        [Required(ErrorMessage = "Name is required. Provide a name to this user.")]
+*/        public string Name { get; set; }
 
         // Collection of badges for the user
-        [Required(ErrorMessage = "Badge is required. Assign a badge to this user.")]
-        public List<Badge> AssignedBadges { get; set; } = new List<Badge>();
+/*        [Required(ErrorMessage = "Badge is required. Assign a badge to this user.")]
+*/        public List<Badge> AssignedBadges { get; set; } = new List<Badge>();
 
         public string? Mail { get; set; }
 
         //A phone number can hold max 15 numbers
         [StringLength(15)]
         public string? PhoneNumber { get; set; }
+
+        // Add a message in case one must be given
+        private string? _message;
+        public string? Message { get => _message; set => _message = value; }
 
         [ForeignKey("Device")]
         public int DeviceId { get; set; }
@@ -68,6 +73,36 @@ namespace DoorControlDemo.Models
 
             }
         }
+
+        public User CreateUser(string name, string? email, string? phonenumber)
+        {
+
+            // Check if required fields are empty
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                _message = "Please fill in a name.";
+            }
+
+
+            // Code below is not fully operational, must be reviewed
+            /*if (!Regex.IsMatch(Name, "^[a-zA-Z]+$"))
+            {
+                MessageBox.Show("Invalid name. The name should contain only letters.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+            }*/
+
+
+            // Create an instance of the Class, set properties and return
+            User user = new User
+            {
+                Name = name,
+                Mail = email,
+                PhoneNumber = phonenumber
+            };
+            return user;
+
+        }
+        
 
     }
 }

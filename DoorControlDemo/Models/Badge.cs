@@ -17,10 +17,10 @@ namespace DoorControlDemo.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
 
+        // Add a message in case one must be given
         private string? _message;
-
-
         public string? Message { get => _message; set => _message = value; }
+
 
         //Navigation Property.
         public User? User { get; set; }
@@ -28,7 +28,6 @@ namespace DoorControlDemo.Models
 
 
         // Set the Necessary Methods.
-
         public Badge createBadge(string Id)
         {
             

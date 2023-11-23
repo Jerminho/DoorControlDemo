@@ -22,10 +22,10 @@ namespace DoorControlDemo.ViewModels
         public CreateBadgeViewModel(DoorControlDbContext dbContext)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            CreateBadgeCommand = new RelayCommand(CreateBadge);
+            CreateBadgeCommand = new RelayCommand(CreateBadgeButton);
         }
 
-        // Declare the Create User Command
+        // Declare the Create Badge Command
         public ICommand CreateBadgeCommand { get; }
 
 
@@ -42,18 +42,8 @@ namespace DoorControlDemo.ViewModels
             }
         }
 
-        public void CreateBadge()
+        public void CreateBadgeButton()
         {
-            /*// Check if required fields are empty
-            if (Convert.ToInt32(BadgeId) == 0 ) // You can adjust this condition based on your specific requirements
-            {
-                //MessageBoxDisplay messageBoxDisplay = new();
-                //messageBoxDisplay.DisplayMessage("Please fill in a valid Badge number.");
-                //messageBoxDisplay.DisplayMessage("Please fill in a valid Badge number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                MessageBox.Show($"Please fill in a valid Badge number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Validation failed
-            }*/
-
             //Create an instance of a badge
             Badge badge = new();
 
@@ -64,15 +54,12 @@ namespace DoorControlDemo.ViewModels
                 return;
             }
 
-            /*// Implement logic to create a Badge, perhaps by calling a method in your model
-            Badge newBadge = new Badge
-            {
-                BadgeId = BadgeId,
-            };*/
+            // Implement logic to create a Badge by calling a method from your model
+          
+            // create a new badge using the instance
+            var createdBadge = badge.createBadge(_badgeId);
 
-            var createdBadge = badge.createBadge(BadgeId);
-
-
+            // If the createdbadge is null, return an error
             if (createdBadge is null)
             {
                 _messageBoxDisplay.DisplayMessage(badge.Message);
@@ -90,8 +77,6 @@ namespace DoorControlDemo.ViewModels
 
             // Save changes to the database
             dbContext.SaveChanges();
-
-
 
             // Add additional logic as needed, e.g., validation, interaction with your data context
             // Construct a message string with information about all Badges

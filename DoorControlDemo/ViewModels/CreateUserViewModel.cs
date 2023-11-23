@@ -21,11 +21,14 @@ namespace DoorControlDemo.ViewModels
         // Declare the database
         public readonly DoorControlDbContext dbContext;
 
+        //Declare a MessageBoxDisplay
+        private MessageBoxDisplay _messageBoxDisplay = new();
+
         // Set the constructor
         public CreateUserViewModel(DoorControlDbContext dbContext)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            CreateUserCommand = new RelayCommand(CreateUser);
+            CreateUserCommand = new RelayCommand(CreateUserButton);
         }
 
         // Declare the Create User Command
@@ -33,7 +36,6 @@ namespace DoorControlDemo.ViewModels
 
         // Declare a private field for the new value
         string _userName;
-
         // Set its new value
         public string UserName
         {
@@ -57,7 +59,6 @@ namespace DoorControlDemo.ViewModels
         }
 
         private string _userPhoneNumber;
-
         public string UserPhoneNumber
         {
             get => _userPhoneNumber;
@@ -70,61 +71,54 @@ namespace DoorControlDemo.ViewModels
 
         // Create the method to be used as command
         // Use the data context to add the new user to the database
-        public void CreateUser()
+        public void CreateUserButton()
         {
-            // Check if required fields are empty
-            if (string.IsNullOrWhiteSpace(UserName) )
-            {
-                MessageBox.Show("Please fill in a name.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Stop the user creation process
-            }
+            //Create an instance of a user
+            User user = new();
 
-            // Check if a device with the same properties already exists in the database
-            if (dbContext.Users.Any(u => u.Name == UserName && u.Mail == UserMail && u.PhoneNumber == UserPhoneNumber))
+            // Check if a device with the same properties already exists in the database and return
+            if (dbContext.Users.Any(u => u.Name == _userName && u.Mail == _userMail && u.PhoneNumber == _userPhoneNumber))
             {
                 MessageBox.Show($"User with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
-            // Implement logic to create a user, perhaps by calling a method in your model
-            User newUser = new User
+            // create a new badge using the instance
+            var createdUser = user.CreateUser(_userName,_userMail,_userPhoneNumber);
+
+            // If the createdbadge is null, return an error
+            if (createdUser == null)
             {
-                Name = UserName,
-                Mail = UserMail,
-                PhoneNumber = UserPhoneNumber
-            };
+                _messageBoxDisplay.DisplayMessage(user.Message);
+                return;
+            }
+
+            // If the Name field is null or empty, return an error
+            if (string.IsNullOrEmpty(createdUser.Name)) 
+            {
+                _messageBoxDisplay.DisplayMessage(user.Message);
+                return;
+            }
 
             // Add the user to the context
-            dbContext.Users.Add(newUser);
+            dbContext.Users.Add(createdUser);
 
             // Save changes to the database
             dbContext.SaveChanges();
 
-            /*// Add additional logic as needed, e.g., validation, interaction with your data context
-
-            MessageBox.Show($"User {newUser.Name} created successfully!"); // Display a message or handle success*/
 
             // Add additional logic as needed, e.g., validation, interaction with your data context
             // Construct a message string with information about all Users
             StringBuilder usersInfo = new StringBuilder("Users in the database:\n");
 
-            foreach (var badge in dbContext.Users)
+            foreach (var u in dbContext.Users)
             {
-                usersInfo.AppendLine($" User: {badge.Name}");
+                usersInfo.AppendLine($" User: {u.Name}");
             }
 
             // Display the message with badge information
-            MessageBox.Show($"User {newUser.Name} created successfully!\n\n{usersInfo.ToString()}");
+            MessageBox.Show($"User {createdUser.Name} created successfully!\n\n{usersInfo.ToString()}");
         }
-
-
-
-        //// PropertyChanged implementation
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
 
     }
 }

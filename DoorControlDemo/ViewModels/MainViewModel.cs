@@ -12,7 +12,7 @@ namespace DoorControlDemo.ViewModels
         public RelayCommand CreateDeviceCommand { get; private set; }
         public RelayCommand CreateUserCommand { get; private set; }
 
-        //Link the commands to their respective actions
+        // Link the commands to their respective actions and call them
         public MainViewModel() 
         {
             CreateBadgeCommand = new RelayCommand(CreateBadgeButtonClick);
@@ -22,7 +22,7 @@ namespace DoorControlDemo.ViewModels
 
 
         //Set the methods
-        //Create the views and close the existing view upon showing the new View
+        //Create the views and close the existing view upon opening the new View
         public void CreateBadgeButtonClick()
         {
             CreateBadgeView createBadgeView = new();

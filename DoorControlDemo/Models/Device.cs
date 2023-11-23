@@ -86,11 +86,6 @@ namespace DoorControlDemo.Models
                 deviceName = Name;
                 ipAddress = Ip;
                 portNumber = PortNumber;
-                
-                //if (portNumber.GetType() != typeof(int) || ipAddress.GetType() != typeof(string) || deviceName.GetType() != typeof(string))
-                //{
-                //    _message = "One or more of the entered values is not of the correct data type!";
-                //}
             }
 
             try
