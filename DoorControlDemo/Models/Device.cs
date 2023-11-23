@@ -40,6 +40,8 @@ namespace DoorControlDemo.Models
         // Collection of users associated with the device
         public List<User> AssignedUsers { get; set; } = new List<User>();
 
+        // Set the message in case one must be given
+
         private string? _message;
         public string? Message { get => _message; set => _message = value; }
 

@@ -21,7 +21,6 @@ namespace DoorControlDemo.ViewModels
         public readonly DoorControlDbContext dbContext;
 
         //Declare a MessageBoxDisplay
-
         private MessageBoxDisplay _messageBoxDisplay = new();
 
         // Set the constructor

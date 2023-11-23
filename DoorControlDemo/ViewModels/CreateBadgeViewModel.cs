@@ -3,6 +3,7 @@ using DoorControlDemo.Models;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -13,6 +14,9 @@ namespace DoorControlDemo.ViewModels
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
+
+        //Declare a MessageBoxDisplay
+        private MessageBoxDisplay _messageBoxDisplay = new();
 
         // Set the constructor
         public CreateBadgeViewModel(DoorControlDbContext dbContext)
@@ -26,9 +30,9 @@ namespace DoorControlDemo.ViewModels
 
 
         // Declare a private field for the new value
-        int _badgeId;
+        string _badgeId;
         // Set its new value
-        public int BadgeId
+        public string BadgeId
         {
             get => _badgeId;
             set
@@ -40,31 +44,49 @@ namespace DoorControlDemo.ViewModels
 
         public void CreateBadge()
         {
-            // Check if required fields are empty
-            if (BadgeId == 0 ) // You can adjust this condition based on your specific requirements
+            /*// Check if required fields are empty
+            if (Convert.ToInt32(BadgeId) == 0 ) // You can adjust this condition based on your specific requirements
             {
                 //MessageBoxDisplay messageBoxDisplay = new();
                 //messageBoxDisplay.DisplayMessage("Please fill in a valid Badge number.");
                 //messageBoxDisplay.DisplayMessage("Please fill in a valid Badge number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MessageBox.Show($"Please fill in a valid Badge number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return; // Validation failed
-            }
+            }*/
+
+            //Create an instance of a badge
+            Badge badge = new();
 
             // Check if a badge with the same BadgeId already exists in the database
-            if (dbContext.Badges.Any(b => b.BadgeId == BadgeId))
+            if (dbContext.Badges.Any(b => b.BadgeId == _badgeId))
             {
-                MessageBox.Show($"Badge {BadgeId} already exists. Please enter a different Badge ID.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Validation failed
+                _messageBoxDisplay.DisplayMessage("This badge already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
-            // Implement logic to create a Badge, perhaps by calling a method in your model
+            /*// Implement logic to create a Badge, perhaps by calling a method in your model
             Badge newBadge = new Badge
             {
                 BadgeId = BadgeId,
-            };
+            };*/
+
+            var createdBadge = badge.createBadge(BadgeId);
+
+
+            if (createdBadge is null)
+            {
+                _messageBoxDisplay.DisplayMessage(badge.Message);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(createdBadge.BadgeId))
+            {
+                _messageBoxDisplay.DisplayMessage(badge.Message);
+                return;
+            }
 
             // Add the badge to the context
-            dbContext.Badges.Add(newBadge);
+            dbContext.Badges.Add(createdBadge);
 
             // Save changes to the database
             dbContext.SaveChanges();
@@ -75,13 +97,13 @@ namespace DoorControlDemo.ViewModels
             // Construct a message string with information about all Badges
             StringBuilder badgesInfo = new StringBuilder("Badges in the database:\n");
 
-            foreach (var badge in dbContext.Badges)
+            foreach (var b in dbContext.Badges)
             {
-                badgesInfo.AppendLine($" BadgeID: {badge.BadgeId}");
+                badgesInfo.AppendLine($" BadgeID: {b.BadgeId}");
             }
 
             // Display the message with badge information
-            MessageBox.Show($"Badge {newBadge.BadgeId} created successfully!\n\n{badgesInfo.ToString()}");
+            MessageBox.Show($"Badge {createdBadge.BadgeId} created successfully!\n\n{badgesInfo.ToString()}");
         }
 
 
