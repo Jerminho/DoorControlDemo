@@ -167,3 +167,6 @@ C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\obj\Debug\ne
 C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\obj\Debug\net7.0-windows\DoorControlDemo.pdb
 C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\obj\Debug\net7.0-windows\DoorControlDemo.genruntimeconfig.cache
 C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\obj\Debug\net7.0-windows\ref\DoorControlDemo.dll
+C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\bin\Debug\net7.0-windows\HCNetSDK.cs
+C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\bin\Debug\net7.0-windows\SdkLib\HCNetSDK.dll
+C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\bin\Debug\net7.0-windows\SdkLib\HCNetSDK.lib

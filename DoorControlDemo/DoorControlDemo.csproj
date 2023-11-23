@@ -13,4 +13,23 @@
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SdkLib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="HCNetSDK.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="SdkLib\HCNetSDK.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SdkLib\HCNetSDK.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

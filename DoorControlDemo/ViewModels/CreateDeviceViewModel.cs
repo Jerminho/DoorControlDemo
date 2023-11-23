@@ -19,6 +19,9 @@ namespace DoorControlDemo.ViewModels
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
+
+        //Declare a MessageBoxDisplay
+
         private MessageBoxDisplay _messageBoxDisplay = new();
 
         // Set the constructor
@@ -126,9 +129,10 @@ namespace DoorControlDemo.ViewModels
             //// Display the message with device information
             //MessageBox.Show($"Device {newDevice.Name} created successfully!\n\n{devicesInfo.ToString()}");
         //}
-
+        //Set a method to create a device
         public void CreateDeviceButton()
         {
+            //Create an instance of a device
             Device device = new();
 
             // Check if a device with the same properties already exists in the database
@@ -149,10 +153,7 @@ namespace DoorControlDemo.ViewModels
 
             var createdDevice = device.CreateDevice(_port, _ipAddress, _deviceName);
 
-            //if (device.Message is not null)
-            //{
-            //    _messageBoxDisplay.DisplayMessage(device.Message);
-            //}
+            
             if (createdDevice is null)
             {
                 _messageBoxDisplay.DisplayMessage(device.Message);
