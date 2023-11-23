@@ -42,7 +42,7 @@ namespace DoorControlDemo.Models
         // Methods
 
         // Add badge to user
-        public void AddBadge(Badge badge)
+        public void AssignBadge(Badge badge)
         {
             if (!AssignedBadges.Contains(badge)){
                 AssignedBadges.Add(badge);
@@ -56,7 +56,7 @@ namespace DoorControlDemo.Models
 
 
         // Remove badge from user
-        public void RemoveBadge(Badge badge)
+        public void RemoveAssignedBadge(Badge badge)
         {
             if (AssignedBadges.Contains(badge))
             {
@@ -71,4 +71,5 @@ namespace DoorControlDemo.Models
 
     }
 }
-
+//UserId can just be Id
+//Why do we have methods to Add and Remove Badge in the User class instead of the Badge class?

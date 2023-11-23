@@ -16,7 +16,7 @@ using System.Windows.Input;
 namespace DoorControlDemo.ViewModels
 {   
 
-    public class CreateUserViewModel : ViewModelBase, INotifyPropertyChanged
+    public class CreateUserViewModel : ViewModelBase
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
@@ -118,13 +118,13 @@ namespace DoorControlDemo.ViewModels
 
 
 
-        // PropertyChanged implementation
-        public event PropertyChangedEventHandler PropertyChanged;
+        //// PropertyChanged implementation
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
     }
 }

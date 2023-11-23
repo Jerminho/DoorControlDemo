@@ -1,21 +1,15 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.Models;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace DoorControlDemo.ViewModels
 {
-    public class CreateBadgeViewModel : ViewModelBase, INotifyPropertyChanged
+    public class CreateBadgeViewModel : ViewModelBase
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
@@ -49,6 +43,9 @@ namespace DoorControlDemo.ViewModels
             // Check if required fields are empty
             if (BadgeId == 0 ) // You can adjust this condition based on your specific requirements
             {
+                //MessageBoxDisplay messageBoxDisplay = new();
+                //messageBoxDisplay.DisplayMessage("Please fill in a valid Badge number.");
+                //messageBoxDisplay.DisplayMessage("Please fill in a valid Badge number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MessageBox.Show($"Please fill in a valid Badge number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return; // Validation failed
             }
@@ -87,13 +84,6 @@ namespace DoorControlDemo.ViewModels
             MessageBox.Show($"Badge {newBadge.BadgeId} created successfully!\n\n{badgesInfo.ToString()}");
         }
 
-
-        // PropertyChanged implementation
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
     }
 }

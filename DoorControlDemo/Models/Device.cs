@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace DoorControlDemo.Models
 {
@@ -17,7 +13,7 @@ namespace DoorControlDemo.Models
             // Set default values if not provided
             Name = "Default Access Device";
             Ip = "192.168.1.1";
-            PortNumber = 8008;
+            PortNumber = 8008.ToString();
             Type = "Access Controller";
         }
 
@@ -27,21 +23,24 @@ namespace DoorControlDemo.Models
         [Key]
         public int DeviceId { get; set; }
 
-        [Required(ErrorMessage = "IP Address is required")]
-        public string Ip { get; set; }
+        //[Required(ErrorMessage = "IP Address is required")]
+        public string? Ip { get; set; }
 
-        [Required(ErrorMessage = "Device name is required.")]
-        public string Name { get; set; }
+        //[Required(ErrorMessage = "Device name is required.")]
+        public string? Name { get; set; }
 
-        [Required(ErrorMessage = "Device port is required.")]
-        public int PortNumber { get; set; }
+        //[Required(ErrorMessage = "Device port is required.")]
+        public string? PortNumber { get; set; }
 
-        [Required(ErrorMessage = "Device type is required.")]
+        //[Required(ErrorMessage = "Device type is required.")]
         public string Type { get; set; }
 
         
         // Collection of users associated with the device
         public List<User> AssignedUsers { get; set; } = new List<User>();
+
+        private string? _message;
+        public string? Message { get => _message; set => _message = value; }
 
 
         // Methods
@@ -63,8 +62,8 @@ namespace DoorControlDemo.Models
         }
 
         // Remove user from device
-        public void RemoveUser(User user)
-        {
+        public void RemoveUser(User user )
+        {  
             if (AssignedUsers.Contains(user))
             {
                 AssignedUsers.Remove(user);
@@ -72,9 +71,46 @@ namespace DoorControlDemo.Models
             else
             {
                 // You can consider logging instead of throwing an exception
-                MessageBox.Show($"Attempted to remove user {user.Name} from device {Name}, but the user was not assigned.");
+                _message = $"Attempted to remove user {user.Name} from device {Name}, but the user was not assigned.";
+                //MessageBox.Show($"Attempted to remove user {user.Name} from device {Name}, but the user was not assigned.");
             }
         }
 
+        public Device CreateDevice(string? portNumber, string? ipAddress, string? deviceName)
+        {
+            if (portNumber is null || ipAddress is null || deviceName is null)
+            {
+                deviceName = Name;
+                ipAddress = Ip;
+                portNumber = PortNumber;
+                
+                //if (portNumber.GetType() != typeof(int) || ipAddress.GetType() != typeof(string) || deviceName.GetType() != typeof(string))
+                //{
+                //    _message = "One or more of the entered values is not of the correct data type!";
+                //}
+            }
+
+            try
+            {
+                Convert.ToInt32(portNumber);
+            }
+            catch 
+            {
+                _message = "One or more of the entered values is not of the correct data type!";
+                return null;
+            }
+
+
+            Device device = new Device
+            {
+
+                Name = deviceName,
+                Ip = ipAddress,
+                PortNumber = portNumber
+            };
+            return device;  
+        }
     }
 }
+
+//DeviceId can just be Id

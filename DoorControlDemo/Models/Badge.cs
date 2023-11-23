@@ -21,3 +21,6 @@ namespace DoorControlDemo.Models
         public User User { get; set; }
     }
 }
+
+// BadgeId can just be  Id
+// [ForeignKey("User")] is not required after setting up the navigation property, as the best way to set up relationships is in the DbContext 

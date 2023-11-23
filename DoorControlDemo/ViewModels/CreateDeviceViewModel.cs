@@ -11,19 +11,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace DoorControlDemo.ViewModels
 {
-    public class CreateDeviceViewModel : ViewModelBase, INotifyPropertyChanged
+    public class CreateDeviceViewModel : ViewModelBase
     {
         // Declare the database
         public readonly DoorControlDbContext dbContext;
+        private MessageBoxDisplay _messageBoxDisplay = new();
 
         // Set the constructor
         public CreateDeviceViewModel(DoorControlDbContext dbContext)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            CreateDeviceCommand = new RelayCommand(CreateDevice);
+            CreateDeviceCommand = new RelayCommand(/*CreateDevice*/CreateDeviceButton);
         }
 
         // Declare the Create User Command
@@ -54,8 +56,8 @@ namespace DoorControlDemo.ViewModels
             }
         }
 
-        int _port;
-        public int Port
+        string _port;
+        public string Port
         {
             get => _port;
             set
@@ -69,45 +71,96 @@ namespace DoorControlDemo.ViewModels
         // Use the data context to add the new user to the database
 
         // To be refactored
-        public void CreateDevice()
+        //public void CreateDevice()
+        //{
+        //    // Check if required fields are empty
+        //    if (string.IsNullOrWhiteSpace(DeviceName))
+        //    {
+        //        MessageBox.Show("Please fill in a name.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return; // Stop the user creation process
+        //    }
+        //    // Check if required fields are empty
+        //    if (string.IsNullOrWhiteSpace(IpAddress))
+        //    {
+        //        MessageBox.Show("Please fill in a valid Ip-Address.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return; // Stop the user creation process
+        //    }
+        //    // Check if required fields are empty
+        //    if (Port == 0) // You can adjust this condition based on your specific requirements
+        //    {
+        //        MessageBox.Show($"Please fill in a valid Port number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return; // Validation failed
+        //    }
+
+        //    // Check if a device with the same properties already exists in the database
+        //    if (dbContext.Devices.Any(d => d.Name == DeviceName && d.Ip == IpAddress && d.PortNumber == Port))
+        //    {
+        //        MessageBox.Show($"Device with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        return; // Stop the user creation process
+        //    }
+
+        //    // Implement logic to create a device, perhaps by calling a method in your model
+        //    Device newDevice = new Device
+        //    {
+        //        Name = DeviceName,
+        //        Ip = IpAddress,
+        //        PortNumber = Port
+        //    };
+
+
+            //// Add the device to the context
+            //dbContext.Devices.Add(newDevice);
+
+            //// Save changes to the database
+            //dbContext.SaveChanges();
+
+            //// Add additional logic as needed, e.g., validation, interaction with your data context
+            //// Construct a message string with information about all devices
+            //StringBuilder devicesInfo = new StringBuilder("Devices in the database:\n");
+
+            //foreach (var device in dbContext.Devices)
+            //{
+            //    devicesInfo.AppendLine($"Name: {device.Name}, IP: {device.Ip}, Port: {device.PortNumber}");
+            //}
+
+            //// Display the message with device information
+            //MessageBox.Show($"Device {newDevice.Name} created successfully!\n\n{devicesInfo.ToString()}");
+        //}
+
+        public void CreateDeviceButton()
         {
-            // Check if required fields are empty
-            if (string.IsNullOrWhiteSpace(DeviceName))
-            {
-                MessageBox.Show("Please fill in a name.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Stop the user creation process
-            }
-            // Check if required fields are empty
-            if (string.IsNullOrWhiteSpace(IpAddress))
-            {
-                MessageBox.Show("Please fill in a valid Ip-Address.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Stop the user creation process
-            }
-            // Check if required fields are empty
-            if (Port == 0) // You can adjust this condition based on your specific requirements
-            {
-                MessageBox.Show($"Please fill in a valid Port number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Validation failed
-            }
+            Device device = new();
 
             // Check if a device with the same properties already exists in the database
-            if (dbContext.Devices.Any(d => d.Name == DeviceName && d.Ip == IpAddress && d.PortNumber == Port))
+            if ((string.IsNullOrEmpty(_deviceName)  || string.IsNullOrEmpty(_ipAddress) || string.IsNullOrEmpty(_port)))
             {
-                MessageBox.Show($"Device with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; // Stop the user creation process
+                if(dbContext.Devices.Any(d => d.Name == "Default Access Device" && d.Ip == "192.168.1.1" && d.PortNumber == "8008"))
+                {
+                    _messageBoxDisplay.DisplayMessage("Device with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
             }
 
-            // Implement logic to create a device, perhaps by calling a method in your model
-            Device newDevice = new Device
+            if (dbContext.Devices.Any(d => d.Name == _deviceName /*&& d.Ip == _ipAddress && d.PortNumber == _port*/))
             {
-                Name = DeviceName,
-                Ip = IpAddress,
-                PortNumber = Port
-            };
+                _messageBoxDisplay.DisplayMessage("Device with the same Name already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            var createdDevice = device.CreateDevice(_port, _ipAddress, _deviceName);
+
+            //if (device.Message is not null)
+            //{
+            //    _messageBoxDisplay.DisplayMessage(device.Message);
+            //}
+            if (createdDevice is null)
+            {
+                _messageBoxDisplay.DisplayMessage(device.Message);
+                return;
+            }
 
             // Add the device to the context
-            dbContext.Devices.Add(newDevice);
+            dbContext.Devices.Add(createdDevice);
 
             // Save changes to the database
             dbContext.SaveChanges();
@@ -116,20 +169,13 @@ namespace DoorControlDemo.ViewModels
             // Construct a message string with information about all devices
             StringBuilder devicesInfo = new StringBuilder("Devices in the database:\n");
 
-            foreach (var device in dbContext.Devices)
+            foreach (var dev in dbContext.Devices)
             {
-                devicesInfo.AppendLine($"Name: {device.Name}, IP: {device.Ip}, Port: {device.PortNumber}");
+                devicesInfo.AppendLine($"Name: {dev.Name}, IP: {dev.Ip}, Port: {dev.PortNumber}");
             }
 
             // Display the message with device information
-            MessageBox.Show($"Device {newDevice.Name} created successfully!\n\n{devicesInfo.ToString()}");
-        }
-
-        // PropertyChanged implementation
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _messageBoxDisplay.DisplayMessage($"Device {createdDevice.Name} created successfully!\n\n{devicesInfo.ToString()}");
         }
     }
 }
