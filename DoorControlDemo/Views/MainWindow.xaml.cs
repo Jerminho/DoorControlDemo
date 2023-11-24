@@ -11,11 +11,12 @@ namespace DoorControlDemo
         public MainViewModel MainViewModel { get; set; } = new(); 
         public MainWindow()
         {
+            // Set the datacontext
             DataContext = MainViewModel;
             InitializeComponent();
             if (CHCNetSDK.NET_DVR_Init() == false)
             {
-                MessageBox.Show("NET_DVR_Init error!");
+                MessageBox.Show("NET_DVR_Init Error!");
                 return;
             }
         }

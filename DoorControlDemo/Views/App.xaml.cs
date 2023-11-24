@@ -20,17 +20,20 @@ namespace DoorControlDemo
         [STAThread]
         public static void Main()
         {
+            // Initialize the SDK after Integration
             CHCNetSDK.NET_DVR_Init();
-            // Test the mainWindow
             if (CHCNetSDK.NET_DVR_Init() == false)
             {
-                MessageBox.Show("NET_DVR_Init error!");
+                MessageBox.Show("NET_DVR_Init Error!");
                 return;
             }
             else
             {
                 MessageBox.Show("NET_DVR_Init Succes!");
             }
+
+
+            // Test the mainWindow
             var app = new App();
             var mainWindow = new MainWindow(); // Replace with the actual main window of your application
             app.Run(mainWindow);
