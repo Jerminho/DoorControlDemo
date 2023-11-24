@@ -6514,7 +6514,7 @@ namespace DoorControlDemo
 
         /* The SDK initialization function */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_Init();
 
@@ -6522,7 +6522,7 @@ namespace DoorControlDemo
 
         /* Release the SDK resources, before the end of the procedure call*/
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_Cleanup();
 
@@ -6538,7 +6538,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetLogToFile(int nLogLevel, string strLogDir, bool bAutoDel);
 
@@ -6546,7 +6546,7 @@ namespace DoorControlDemo
 
         /* Returns the last error code of the operation */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern uint NET_DVR_GetLastError();
 
@@ -6554,7 +6554,7 @@ namespace DoorControlDemo
 
         /* Returns the last error code information of the operation */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern IntPtr NET_DVR_GetErrorMsg(ref int pErrorNo);
 
@@ -6570,11 +6570,11 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetAlarmDeviceUser(int lUserID, int lUserIndex, ref NET_DVR_ALARM_DEVICE_USER lpDeviceUser);
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_GetAlarmDeviceUser(int lUserID, int lUserIndex, ref NET_DVR_ALARM_DEVICE_USER lpDeviceUser);
 
@@ -6596,7 +6596,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_GetDVRConfig(int lUserID, uint dwCommand, int lChannel, IntPtr lpOutBuffer, uint dwOutBufferSize, ref uint lpBytesReturned);
 
@@ -6616,7 +6616,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+[DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetDVRConfig(int lUserID, uint dwCommand, int lChannel, IntPtr lpInBuffer, uint dwInBufferSize);
 
@@ -6656,7 +6656,7 @@ namespace DoorControlDemo
 
          */
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_StartRemoteConfig(int lUserID, uint dwCommand, IntPtr lpInBuffer, Int32 dwInBufferLen, RemoteConfigCallback cbStateCallback, IntPtr pUserData);
 
@@ -6676,7 +6676,7 @@ namespace DoorControlDemo
 
          */
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SendRemoteConfig(int lHandle, uint dwDataType, IntPtr pSendBuf, uint dwBufSize);
 
@@ -6686,25 +6686,25 @@ namespace DoorControlDemo
 
         // [in] lHandle - handle ,NET_DVR_StartRemoteConfig return value
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_StopRemoteConfig(int lHandle);
 
 
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_Upgrade_V40(int lUserID, uint dwUpgradeType, string sFileName, IntPtr pInbuffer, Int32 dwInBufferLen);
 
 
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_GetUpgradeProgress(int lUpgradeHandle);
 
 
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_CloseUpgradeHandle(int lUpgradeHandle);
 
@@ -6718,7 +6718,7 @@ namespace DoorControlDemo
 
          */
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_GetRemoteConfigState(int lHandle, IntPtr pState);
 
@@ -6734,7 +6734,7 @@ namespace DoorControlDemo
 
          */
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_GetNextRemoteConfig(int lHandle, IntPtr lpOutBuff, uint dwOutBuffSize);
 
@@ -6760,7 +6760,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_GetDeviceConfig(int lUserID, uint dwCommand, uint dwCount, IntPtr lpInBuffer, uint dwInBufferSize, IntPtr lpStatusList, IntPtr lpOutBuffer, uint dwOutBufferSize);
 
@@ -6786,7 +6786,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetDeviceConfig(int lUserID, uint dwCommand, uint dwCount, IntPtr lpInBuffer, uint dwInBufferSize, IntPtr lpStatusList, IntPtr lpInParamBuffer, uint dwInParamBufferSize);
 
@@ -6808,7 +6808,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_RemoteControl(int lUserID, uint dwCommand, IntPtr lpInBuffer, uint dwInBufferSize);
 
@@ -6822,13 +6822,13 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_Login_V40(ref NET_DVR_USER_LOGIN_INFO pLoginInfo, ref NET_DVR_DEVICEINFO_V40 lpDeviceInfo);
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_Logout_V30(Int32 lUserID);
 
@@ -6838,7 +6838,7 @@ namespace DoorControlDemo
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_RealPlay_V40(int lUserID, ref NET_DVR_PREVIEWINFO lpPreviewInfo, RealDataCallBack fRealDataCallBack_V30, IntPtr pUser);
 
@@ -6850,15 +6850,15 @@ namespace DoorControlDemo
 
         /* Set up alarm upload channel, to obtain the information such as alarm*/
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_SetupAlarmChan(int lUserID);
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_SetupAlarmChan_V30(int lUserID);
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_SetupAlarmChan_V41(int lUserID, ref NET_DVR_SETUPALARM_PARAM lpSetupParam);
 
@@ -6866,11 +6866,11 @@ namespace DoorControlDemo
 
         /* shut down alarm upload channel, to obtain the information such as alarm*/
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_CloseAlarmChan(int lAlarmHandle);
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_CloseAlarmChan_V30(int lAlarmHandle);
 
@@ -6910,13 +6910,13 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetDVRMessageCallBack_V50(int iIndex, MSGCallBack fMessageCallBack, IntPtr pUser);
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetDVRMessageCallBack_V31(MSGCallBack_V31 fMessageCallBack, IntPtr pUser);
 
@@ -6938,7 +6938,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_GetDeviceAbility(int lUserID, uint dwAbilityType, IntPtr pInBuf, uint dwInLength, IntPtr pOutBuf, uint dwOutLength);
 
@@ -6946,7 +6946,7 @@ namespace DoorControlDemo
 
         /* Get to the SDK version information*/
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern uint NET_DVR_GetSDKVersion();
 
@@ -6954,7 +6954,7 @@ namespace DoorControlDemo
 
         /* Get version number of the SDK and build information*/
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern uint NET_DVR_GetSDKBuildVersion();
 
@@ -6970,7 +6970,7 @@ namespace DoorControlDemo
 
          */
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_ControlGateway(int lUserID, int lGatewayIndex, uint dwStaic);
 
@@ -6978,7 +6978,7 @@ namespace DoorControlDemo
 
         
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_STDXMLConfig(int lUserID, IntPtr lpInputParam, IntPtr lpOutputParam);
 
@@ -6986,33 +6986,33 @@ namespace DoorControlDemo
 
         public delegate void REALDATACALLBACK(Int32 lRealHandle, UInt32 dwDataType, ref byte pBuffer, UInt32 dwBufSize, IntPtr pUser);
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_RealPlay_V30(int iUserID, ref NET_DVR_CLIENTINFO lpClientInfo, REALDATACALLBACK fRealDataCallBack_V30, IntPtr pUser, UInt32 bBlocked);
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_StopRealPlay(int iRealHandle);
 
 
 
         public delegate void VOICEDATACALLBACKV30(int lVoiceComHandle, string pRecvDataBuffer, uint dwBufSize, byte byAudioFlag, System.IntPtr pUser);
-
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_StartVoiceCom_V30(int lUserID, uint dwVoiceChan, bool bNeedCBNoEncData, VOICEDATACALLBACKV30 fVoiceDataCallBack, IntPtr pUser);
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_SetVoiceComClientVolume(int lVoiceComHandle, ushort wVolume);
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_StopVoiceCom(int lVoiceComHandle);
 
@@ -7024,7 +7024,7 @@ namespace DoorControlDemo
 
 
 
-[DllImport(@"C:\Users\pierr\Downloads\Stage_Vika\DoorControlDemo\DoorControlDemo\SdkLib\lib\HCNetSDK.dll")]
+    [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern bool NET_DVR_CaptureJPEGPicture(int lUserID, int lChannel,ref CHCNetSDK.NET_DVR_JPEGPARA lpJpegPara,IntPtr sPicFileName);
 
@@ -7498,7 +7498,7 @@ namespace DoorControlDemo
 
         // 新增接口一个
 
-        [DllImportAttribute(@"..\..\..\HCNetSDK\HCNetSDK.dll")]
+        [DllImport(@"SdkLib\lib\HCNetSDK.dll")]
 
         public static extern int NET_DVR_SendWithRecvRemoteConfig(int lHandle, IntPtr lpInBuff, uint dwInBuffSize, IntPtr lpOutBuff, uint dwOutBuffSize, ref uint dwOutDataLen);
 

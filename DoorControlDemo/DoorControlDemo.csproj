@@ -9,28 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SdkLib\**" />
+    <EmbeddedResource Remove="SdkLib\**" />
+    <None Remove="SdkLib\**" />
+    <Page Remove="SdkLib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.13" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SdkLib\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="HCNetSDK.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="SdkLib\HCNetSDK.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SdkLib\HCNetSDK.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
