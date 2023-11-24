@@ -18,10 +18,6 @@ namespace DoorControlDemo
                 MessageBox.Show("NET_DVR_Init error!");
                 return;
             }
-            else
-            {
-                MessageBox.Show("Succes");
-            }
         }
     }
 }

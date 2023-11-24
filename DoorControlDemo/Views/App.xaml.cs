@@ -27,6 +27,10 @@ namespace DoorControlDemo
                 MessageBox.Show("NET_DVR_Init error!");
                 return;
             }
+            else
+            {
+                MessageBox.Show("NET_DVR_Init Succes!");
+            }
             var app = new App();
             var mainWindow = new MainWindow(); // Replace with the actual main window of your application
             app.Run(mainWindow);
