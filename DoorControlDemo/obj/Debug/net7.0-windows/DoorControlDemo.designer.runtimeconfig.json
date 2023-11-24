@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\andan\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\andan\\.nuget\\packages",
-      "C:\\Program Files\\DevExpress 23.1\\Components\\Offline Packages"
+      "C:\\Users\\pierr\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\pierr\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Reflection.NullabilityInfoContext.IsSupported": true,

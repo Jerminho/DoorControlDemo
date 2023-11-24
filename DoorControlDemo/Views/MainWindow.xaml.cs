@@ -13,6 +13,15 @@ namespace DoorControlDemo
         {
             DataContext = MainViewModel;
             InitializeComponent();
+            if (CHCNetSDK.NET_DVR_Init() == false)
+            {
+                MessageBox.Show("NET_DVR_Init error!");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Succes");
+            }
         }
     }
 }
