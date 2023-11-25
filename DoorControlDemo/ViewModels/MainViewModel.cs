@@ -1,5 +1,4 @@
-﻿using DoorControlDemo.Models;
-using DoorControlDemo.Views;
+﻿using DoorControlDemo.Views;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 

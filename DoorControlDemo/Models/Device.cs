@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
 
 namespace DoorControlDemo.Models
 {
@@ -17,12 +16,11 @@ namespace DoorControlDemo.Models
             Type = "Access Controller";
         }
 
-
         //Properties
         //Required is not needed here since the properties are nullable...
 
         [Key]
-        public int DeviceId { get; set; }
+        public int Id { get; set; }
 
         //[Required(ErrorMessage = "IP Address is required")]
         public string? Ip { get; set; }
@@ -75,7 +73,6 @@ namespace DoorControlDemo.Models
             {
                 // You can consider logging instead of throwing an exception
                 _message = $"Attempted to remove user {user.Name} from device {Name}, but the user was not assigned.";
-                //MessageBox.Show($"Attempted to remove user {user.Name} from device {Name}, but the user was not assigned.");
             }
         }
 
@@ -110,5 +107,3 @@ namespace DoorControlDemo.Models
         }
     }
 }
-
-//DeviceId can just be Id

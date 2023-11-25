@@ -7,11 +7,12 @@ using System.Runtime.CompilerServices;
 namespace DoorControlDemo.ViewModels
 {
     // Inherit from INotifyPropertyChanged
-    //When ViewModelBase is inherited, INotifyPropertyChanged will also be inherited
-    //Only inherit when you need the ViewModelBase
 
-    //The viewModelBase can consist of methods that would essentiallu be re-used
-    //Adding them in the ViewModelBase prevents the repition of code
+    // When ViewModelBase is inherited, INotifyPropertyChanged will also be inherited
+    // Only inherit when you need the ViewModelBase
+
+    // The viewModelBase can consist of methods that would essentiallu be re-used
+    // Adding them in the ViewModelBase prevents the repition of code
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;

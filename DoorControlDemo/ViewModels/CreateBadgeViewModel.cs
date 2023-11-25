@@ -3,7 +3,6 @@ using DoorControlDemo.Models;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -42,6 +41,7 @@ namespace DoorControlDemo.ViewModels
             }
         }
 
+        // Create a method for a badge creation
         public void CreateBadgeButton()
         {
             //Create an instance of a badge
@@ -90,7 +90,6 @@ namespace DoorControlDemo.ViewModels
             // Display the message with badge information
             MessageBox.Show($"Badge {createdBadge.BadgeId} created successfully!\n\n{badgesInfo.ToString()}");
         }
-
 
     }
 }

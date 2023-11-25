@@ -1,13 +1,5 @@
 ﻿using DoorControlDemo.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoorControlDemo.Data
 {
@@ -51,7 +43,7 @@ namespace DoorControlDemo.Data
 
             // Configure Device entity with a primary key
             modelbuilder.Entity<Device>()
-                .HasKey(d => d.DeviceId);
+                .HasKey(d => d.Id);
         }
     }
 }

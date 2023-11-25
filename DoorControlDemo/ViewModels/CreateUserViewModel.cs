@@ -1,21 +1,14 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.Models;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace DoorControlDemo.ViewModels
 {   
-
     public class CreateUserViewModel : ViewModelBase
     {
         // Declare the database

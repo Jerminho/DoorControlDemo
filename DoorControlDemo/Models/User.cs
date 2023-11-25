@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.IO.Packaging;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DoorControlDemo.Models
@@ -15,6 +10,7 @@ namespace DoorControlDemo.Models
     {
         // Set the primary key
         [Key]
+
         //the database should automatically generate a unique value
         //for that property when a new record is inserted
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
