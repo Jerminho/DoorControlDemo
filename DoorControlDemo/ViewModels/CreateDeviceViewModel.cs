@@ -21,11 +21,13 @@ namespace DoorControlDemo.ViewModels
         public CreateDeviceViewModel(DoorControlDbContext dbContext)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            CreateDeviceCommand = new RelayCommand(/*CreateDevice*/CreateDeviceButton);
+            CreateDeviceCommand = new RelayCommand(CreateDeviceButton);
+            CreateMainCommand = new RelayCommand(CreateMainButtonClick);
         }
 
         // Declare the Create User Command
         public ICommand CreateDeviceCommand { get; }
+        public ICommand CreateMainCommand { get; set; }
 
         // Declare a private field for the new value
         string _deviceName;

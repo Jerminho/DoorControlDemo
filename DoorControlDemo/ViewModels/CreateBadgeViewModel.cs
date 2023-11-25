@@ -22,10 +22,12 @@ namespace DoorControlDemo.ViewModels
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             CreateBadgeCommand = new RelayCommand(CreateBadgeButton);
+            CreateMainCommand = new RelayCommand(CreateMainButtonClick);
         }
 
         // Declare the Create Badge Command
-        public ICommand CreateBadgeCommand { get; }
+        public ICommand CreateBadgeCommand { get; set; }
+        public ICommand CreateMainCommand { get; set; }
 
 
         // Declare a private field for the new value
@@ -40,6 +42,15 @@ namespace DoorControlDemo.ViewModels
                 OnPropertyChanged(nameof(BadgeId));
             }
         }
+/*
+        // Navigate back to the Main window
+        public void CreateMainButtonClick()
+        {
+            MainWindow mainindow = new MainWindow();
+            mainindow.Show();
+            Application.Current.Windows[0]?.Close();
+        }*/
+
 
         // Create a method for a badge creation
         public void CreateBadgeButton()

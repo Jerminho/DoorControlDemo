@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 
 // Create a ViewModelBase
@@ -30,6 +31,14 @@ namespace DoorControlDemo.ViewModels
             backingField = value;
 
             OnPropertyChanged(propertyName);
+        }
+
+        // Navigate back to the Main window
+        public void CreateMainButtonClick()
+        {
+            MainWindow mainindow = new MainWindow();
+            mainindow.Show();
+            Application.Current.Windows[0]?.Close();
         }
     }
 }

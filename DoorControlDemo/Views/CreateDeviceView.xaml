@@ -17,5 +17,6 @@
             <TextBox x:Name="DevicePortTextBox" Text="{Binding Port}" Margin="0,0,0,10"/>
             <Button Content="Create Device" Command="{Binding CreateDeviceCommand}"/>
         </StackPanel>
+        <Button x:Name="btnCreateMain" Content="Home" HorizontalAlignment="Left" Margin="152,315,0,0" VerticalAlignment="Top" Height="30" Width="100" Command="{Binding CreateMainCommand}"/>
     </Grid>
 </Window>

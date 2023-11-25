@@ -13,5 +13,7 @@
             <TextBox x:Name="BadgeNumberTextBox" Text="{Binding BadgeId}" Margin="0,0,0,10"/>
             <Button Content="Create Badge" Command="{Binding CreateBadgeCommand}"/>
         </StackPanel>
+        <Button x:Name="btnCreateMain" Content="Home" HorizontalAlignment="Left" Margin="152,281,0,0" VerticalAlignment="Top" Height="30" Width="100" Command="{Binding CreateMainCommand}"/>
+
     </Grid>
 </Window>
