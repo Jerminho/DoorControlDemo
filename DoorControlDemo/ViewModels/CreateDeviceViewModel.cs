@@ -22,11 +22,13 @@ namespace DoorControlDemo.ViewModels
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             CreateDeviceCommand = new RelayCommand(CreateDeviceButton);
-            CreateMainCommand = new RelayCommand(CreateMainButtonClick);
+            // Lambda expression
+            CreateMainCommand = new RelayCommand(()=>NavigateToWindow(new MainWindow()));
         }
 
         // Declare the Create User Command
         public ICommand CreateDeviceCommand { get; }
+        // Declare the Create Main Command to redirect home
         public ICommand CreateMainCommand { get; set; }
 
         // Declare a private field for the new value

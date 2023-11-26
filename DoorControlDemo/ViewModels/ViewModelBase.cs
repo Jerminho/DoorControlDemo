@@ -12,7 +12,7 @@ namespace DoorControlDemo.ViewModels
     // When ViewModelBase is inherited, INotifyPropertyChanged will also be inherited
     // Only inherit when you need the ViewModelBase
 
-    // The viewModelBase can consist of methods that would essentiallu be re-used
+    // The viewModelBase can consist of methods that would essentially be re-used
     // Adding them in the ViewModelBase prevents the repition of code
     public class ViewModelBase : INotifyPropertyChanged
     {
@@ -33,11 +33,10 @@ namespace DoorControlDemo.ViewModels
             OnPropertyChanged(propertyName);
         }
 
-        // Navigate back to the Main window
-        public void CreateMainButtonClick()
+        // Method to navigate back to the Main window
+        public void NavigateToWindow(Window window)
         {
-            MainWindow mainindow = new MainWindow();
-            mainindow.Show();
+            window.Show();
             Application.Current.Windows[0]?.Close();
         }
     }

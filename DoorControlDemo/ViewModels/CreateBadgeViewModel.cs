@@ -1,5 +1,6 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.Models;
+using DoorControlDemo.Views;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Linq;
@@ -22,11 +23,13 @@ namespace DoorControlDemo.ViewModels
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             CreateBadgeCommand = new RelayCommand(CreateBadgeButton);
-            CreateMainCommand = new RelayCommand(CreateMainButtonClick);
+            // Lambda expression
+            CreateMainCommand = new RelayCommand(()=>NavigateToWindow(new MainWindow()));
         }
 
         // Declare the Create Badge Command
         public ICommand CreateBadgeCommand { get; set; }
+        // Declare the Create Main Command to redirect home
         public ICommand CreateMainCommand { get; set; }
 
 

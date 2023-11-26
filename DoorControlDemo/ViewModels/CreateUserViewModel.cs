@@ -22,7 +22,8 @@ namespace DoorControlDemo.ViewModels
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             CreateUserCommand = new RelayCommand(CreateUserButton);
-            CreateMainCommand = new RelayCommand(CreateMainButtonClick);
+            // Lambda expression
+            CreateMainCommand = new RelayCommand(()=>NavigateToWindow(new MainWindow()));
         }
 
         // Declare the Create User Command
