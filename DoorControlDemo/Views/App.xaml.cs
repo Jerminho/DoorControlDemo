@@ -1,5 +1,8 @@
-﻿using DoorControlDemo.ViewModels;
+﻿using DoorControlDemo.Data;
+using DoorControlDemo.ViewModels;
 using DoorControlDemo.Views;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,12 +18,10 @@ namespace DoorControlDemo
     /// </summary>
     public partial class App : Application
     {
-        //Add the main method below in case it's missing
-
+        public IServiceProvider _serviceProvider;
         [STAThread]
         public static void Main()
         {
-            // Initialize the SDK after Integration
             CHCNetSDK.NET_DVR_Init();
             if (CHCNetSDK.NET_DVR_Init() == false)
             {
@@ -32,11 +33,31 @@ namespace DoorControlDemo
                 MessageBox.Show("NET_DVR_Init Succes!");
             }
 
+            // Create and configure the service collection
+            var services = new ServiceCollection();
+            services.AddDbContext<DoorControlDbContext>(options =>
+                options.UseInMemoryDatabase("DoorControlDb"));
 
-            // Test the mainWindow
-            var app = new App();
-            var mainWindow = new MainWindow(); // Replace with the actual main window of your application
+            // Register other services and view models as needed
+            services.AddSingleton<MainViewModel>();
+            services.AddTransient<CreateBadgeViewModel>();
+            services.AddTransient<CreateDeviceViewModel>();
+            services.AddTransient<CreateUserViewModel>();
+            // Add other ViewModel registrations
+
+            // Build the service provider
+            var serviceProvider = services.BuildServiceProvider();
+
+            // Run the application
+            var app = new App(serviceProvider);
+            var mainWindow = new MainWindow();
             app.Run(mainWindow);
         }
+
+        public App(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+        }
+
     }
 }

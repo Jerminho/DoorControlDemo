@@ -14,6 +14,7 @@
             <Button Content="Create Badge" Command="{Binding CreateBadgeCommand}"/>
         </StackPanel>
         <Button x:Name="btnCreateMain" Content="Home" HorizontalAlignment="Left" Margin="152,281,0,0" VerticalAlignment="Top" Height="30" Width="100" Command="{Binding CreateMainCommand}"/>
+        <Button x:Name="btnNavigateToAssignBadge" Content="ASSIGN" HorizontalAlignment="Left" Margin="547,291,0,0" VerticalAlignment="Top" Height="30" Width="100" Command="{Binding NavigateToAssignBadgeCommand}"/>
 
     </Grid>
 </Window>

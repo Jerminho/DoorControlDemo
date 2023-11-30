@@ -13,7 +13,7 @@ namespace DoorControlDemo.ViewModels
     public class CreateBadgeViewModel : ViewModelBase
     {
         // Declare the database
-        public readonly DoorControlDbContext dbContext;
+        public readonly DoorControlDbContext _dbContext;
 
         //Declare a MessageBoxDisplay
         private MessageBoxDisplay _messageBoxDisplay = new();
@@ -21,16 +21,21 @@ namespace DoorControlDemo.ViewModels
         // Set the constructor
         public CreateBadgeViewModel(DoorControlDbContext dbContext)
         {
-            this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             CreateBadgeCommand = new RelayCommand(CreateBadgeButton);
+
             // Lambda expression
+            // Navigate to MainWindow
             CreateMainCommand = new RelayCommand(()=>NavigateToWindow(new MainWindow()));
+            //Navigate to AssignBadgeWindow
+            NavigateToAssignBadgeCommand = new RelayCommand(() => NavigateToAssignBadgeWindow(new AssignBadgeView()));
         }
 
         // Declare the Create Badge Command
         public ICommand CreateBadgeCommand { get; set; }
         // Declare the Create Main Command to redirect home
         public ICommand CreateMainCommand { get; set; }
+        public ICommand NavigateToAssignBadgeCommand { get; set; }
 
 
         // Declare a private field for the new value
@@ -62,7 +67,7 @@ namespace DoorControlDemo.ViewModels
             Badge badge = new();
 
             // Check if a badge with the same BadgeId already exists in the database
-            if (dbContext.Badges.Any(b => b.BadgeId == _badgeId))
+            if (_dbContext.Badges.Any(b => b.BadgeId == _badgeId))
             {
                 _messageBoxDisplay.DisplayMessage("This badge already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -87,16 +92,16 @@ namespace DoorControlDemo.ViewModels
             }
 
             // Add the badge to the context
-            dbContext.Badges.Add(createdBadge);
+            _dbContext.Badges.Add(createdBadge);
 
             // Save changes to the database
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             // Add additional logic as needed, e.g., validation, interaction with your data context
             // Construct a message string with information about all Badges
             StringBuilder badgesInfo = new StringBuilder("Badges in the database:\n");
 
-            foreach (var b in dbContext.Badges)
+            foreach (var b in _dbContext.Badges)
             {
                 badgesInfo.AppendLine($" BadgeID: {b.BadgeId}");
             }

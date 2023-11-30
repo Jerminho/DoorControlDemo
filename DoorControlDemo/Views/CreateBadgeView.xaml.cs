@@ -1,6 +1,7 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +26,8 @@ namespace DoorControlDemo.Views
         public CreateBadgeView()
         {
             InitializeComponent();
-            // Configure the DbContextOptions. This can be an in-memory database or another provider.
-            var options = new DbContextOptionsBuilder<DoorControlDbContext>()
-                .UseInMemoryDatabase("BadgesDb") // Suitable name for the Db
-                .Options;
+            DataContext = new CreateBadgeViewModel(((App)Application.Current)._serviceProvider.GetRequiredService<DoorControlDbContext>());
 
-            // Create the DbContext with the configured options
-            var dbContext = new DoorControlDbContext(options);
-            // Set the data context
-            DataContext = new CreateBadgeViewModel(dbContext);
         }
     }
 }

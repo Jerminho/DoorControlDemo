@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ImmdTm56xbCIUBCh74tzBvgQ83ZASsN2r7Gj7b3tM8FmdIBwuP1jiufQPrfnK9ov94xImbAHY0i3Lh7hQcCS3g==",
+  "dgSpecHash": "7hqMpBLI/ITbOa1gTJPwy58jiLjuReVNnZnFi0ko7vJxpw8wjd4D64M2HcyqfvxMmS5yy7bF3pRRz85D5sWSFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pierr\\Downloads\\Stage_Vika\\DoorControlDemo\\DoorControlDemo\\DoorControlDemo.csproj",
+  "projectFilePath": "C:\\Users\\pierr\\GitHubWPL\\DoorControlDemo\\DoorControlDemo\\DoorControlDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pierr\\.nuget\\packages\\commonservicelocator\\2.0.2\\commonservicelocator.2.0.2.nupkg.sha512",
     "C:\\Users\\pierr\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",

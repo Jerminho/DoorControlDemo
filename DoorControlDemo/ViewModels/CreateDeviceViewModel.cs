@@ -12,7 +12,7 @@ namespace DoorControlDemo.ViewModels
     public class CreateDeviceViewModel : ViewModelBase
     {
         // Declare the database
-        public readonly DoorControlDbContext dbContext;
+        public readonly DoorControlDbContext _dbContext;
 
         //Declare a MessageBoxDisplay
         private MessageBoxDisplay _messageBoxDisplay = new();
@@ -20,9 +20,11 @@ namespace DoorControlDemo.ViewModels
         // Set the constructor
         public CreateDeviceViewModel(DoorControlDbContext dbContext)
         {
-            this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             CreateDeviceCommand = new RelayCommand(CreateDeviceButton);
+
             // Lambda expression
+            // Navigate to MainWindow
             CreateMainCommand = new RelayCommand(()=>NavigateToWindow(new MainWindow()));
         }
 
@@ -76,14 +78,14 @@ namespace DoorControlDemo.ViewModels
             // Check if a device with the same properties already exists in the database
             if ((string.IsNullOrEmpty(_deviceName)  || string.IsNullOrEmpty(_ipAddress) || string.IsNullOrEmpty(_port)))
             {
-                if(dbContext.Devices.Any(d => d.Name == "Default Access Device" && d.Ip == "192.168.1.1" && d.PortNumber == "8008"))
+                if(_dbContext.Devices.Any(d => d.Name == "Default Access Device" && d.Ip == "192.168.1.1" && d.PortNumber == "8008"))
                 {
                     _messageBoxDisplay.DisplayMessage("Device with the same properties already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
 
-            if (dbContext.Devices.Any(d => d.Name == _deviceName /*&& d.Ip == _ipAddress && d.PortNumber == _port*/))
+            if (_dbContext.Devices.Any(d => d.Name == _deviceName /*&& d.Ip == _ipAddress && d.PortNumber == _port*/))
             {
                 _messageBoxDisplay.DisplayMessage("Device with the same Name already exists.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -99,16 +101,16 @@ namespace DoorControlDemo.ViewModels
             }
 
             // Add the device to the context
-            dbContext.Devices.Add(createdDevice);
+            _dbContext.Devices.Add(createdDevice);
 
             // Save changes to the database
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             // Add additional logic as needed, e.g., validation, interaction with your data context
             // Construct a message string with information about all devices
             StringBuilder devicesInfo = new StringBuilder("Devices in the database:\n");
 
-            foreach (var dev in dbContext.Devices)
+            foreach (var dev in _dbContext.Devices)
             {
                 devicesInfo.AppendLine($"Name: {dev.Name}, IP: {dev.Ip}, Port: {dev.PortNumber}");
             }

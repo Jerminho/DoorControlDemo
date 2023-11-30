@@ -39,5 +39,11 @@ namespace DoorControlDemo.ViewModels
             window.Show();
             Application.Current.Windows[0]?.Close();
         }
+
+        public void NavigateToAssignBadgeWindow(Window window)
+        {
+            window.Show();
+            Application.Current.Windows[0]?.Close();
+        }
     }
 }

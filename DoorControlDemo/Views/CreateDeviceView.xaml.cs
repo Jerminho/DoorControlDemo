@@ -1,6 +1,7 @@
 ﻿using DoorControlDemo.Data;
 using DoorControlDemo.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +26,9 @@ namespace DoorControlDemo.Views
         public CreateDeviceView()
         {
             InitializeComponent();
-            // Configure the DbContextOptions. This can be an in-memory database or another provider.
-            var options = new DbContextOptionsBuilder<DoorControlDbContext>()
-                .UseInMemoryDatabase("DevicesDb") // Suitable name for the Db
-                .Options;
+            InitializeComponent();
+            DataContext = new CreateDeviceViewModel(((App)Application.Current)._serviceProvider.GetRequiredService<DoorControlDbContext>());
 
-            // Create the DbContext with the configured options
-            var dbContext = new DoorControlDbContext(options);
-            // Set the data context
-            DataContext = new CreateDeviceViewModel(dbContext);
         }
     }
 }

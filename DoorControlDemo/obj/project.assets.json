@@ -7839,11 +7839,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pierr\\Downloads\\Stage_Vika\\DoorControlDemo\\DoorControlDemo\\DoorControlDemo.csproj",
+      "projectUniqueName": "C:\\Users\\pierr\\GitHubWPL\\DoorControlDemo\\DoorControlDemo\\DoorControlDemo.csproj",
       "projectName": "DoorControlDemo",
-      "projectPath": "C:\\Users\\pierr\\Downloads\\Stage_Vika\\DoorControlDemo\\DoorControlDemo\\DoorControlDemo.csproj",
+      "projectPath": "C:\\Users\\pierr\\GitHubWPL\\DoorControlDemo\\DoorControlDemo\\DoorControlDemo.csproj",
       "packagesPath": "C:\\Users\\pierr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pierr\\Downloads\\Stage_Vika\\DoorControlDemo\\DoorControlDemo\\obj\\",
+      "outputPath": "C:\\Users\\pierr\\GitHubWPL\\DoorControlDemo\\DoorControlDemo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pierr\\AppData\\Roaming\\NuGet\\NuGet.Config",
